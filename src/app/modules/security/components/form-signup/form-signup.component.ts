@@ -52,6 +52,7 @@ export class FormSignupComponent {
    */
   auth(): void {
     this.authService.GoogleAuth().then((Response) => {
+      console.log(Response);
       sessionStorage.setItem(
         'googleUserEmail',
         JSON.stringify(Response.additionalUserInfo?.profile)
@@ -70,6 +71,7 @@ export class FormSignupComponent {
    * A function that is responsible for registering a new customer.
    */
   registerCustomer(): void {
+    debugger;
     if (this.google) {
       this.authService.SignUp(
         this.frmSingUp.get('email')?.getRawValue(),

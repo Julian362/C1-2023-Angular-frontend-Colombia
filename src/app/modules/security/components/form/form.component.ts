@@ -55,11 +55,14 @@ export class FormComponent {
             error: (err) => {
               Swal.fire({
                 position: 'top-end',
-                icon: 'error',
-                title: 'Datos incorrectos',
+                icon: 'warning',
+                title: 'Debe completar el registro primero',
                 showConfirmButton: false,
                 timer: 3500,
               });
+              setTimeout(() => {
+                this.router.navigate(['security/signup']);
+              }, 1500);
             },
             complete: () => {
               Swal.fire({
@@ -78,11 +81,14 @@ export class FormComponent {
         error: (err) => {
           Swal.fire({
             position: 'top-end',
-            icon: 'error',
-            title: 'Datos incorrectos',
+            icon: 'warning',
+            title: 'Debe completar el registro primero',
             showConfirmButton: false,
             timer: 3500,
           });
+          setTimeout(() => {
+            this.router.navigate(['security/signup']);
+          }, 1500);
         },
         complete: () => {
           Swal.fire({
@@ -109,7 +115,7 @@ export class FormComponent {
     const newCustomer = this.customerService.singIn(customer).subscribe({
       next: (data) => {
         localStorage.setItem('id', data.id);
-        localStorage.setItem('token', data.access_token);
+        localStorage.setItem('access_token', data.access_token);
       },
       error: (err) => {
         Swal.fire({

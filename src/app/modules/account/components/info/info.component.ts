@@ -39,7 +39,7 @@ export class InfoComponent {
   history() {
     if (this.AccountId) {
       this.accountService.setAccountOut(this.AccountId);
-      this.router.navigate(['movements/']);
+      this.router.navigate(['movements/history']);
     } else {
       Swal.fire({
         position: 'top-end',

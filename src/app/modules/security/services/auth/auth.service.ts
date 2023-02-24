@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
   providedIn: 'root',
 })
 export class AuthService {
+  hola = 'hola mundo';
   sessionGoogle = new BehaviorSubject<boolean>(false);
   setGoogleOut(google: boolean) {
     this.sessionGoogle.next(google);
@@ -54,7 +55,7 @@ export class AuthService {
    * @param {string} password - string - The password of the user.
    * @returns The user is being returned.
    */
-  SignIn(email: string, password: string) {
+  async SignIn(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
@@ -82,30 +83,34 @@ export class AuthService {
       .fetchSignInMethodsForEmail(email)
       .then((signInMethods) => {
         if (signInMethods.length > 0) {
-          return true;
           localStorage.clear();
           sessionStorage.clear();
+          return true;
         } else {
           return false;
         }
       });
   }
-  SignUp(email: string, password: string) {
-    return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.SetUserData(result.user);
-      })
-      .catch((error) => {
-        this.SetUserData({});
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          title: error.message,
-          showConfirmButton: false,
-          timer: 1500,
+  async SignUp(email: string, password: string) {
+    debugger;
+    if (!(await this.isEmail(email))) {
+      return this.afAuth
+        .createUserWithEmailAndPassword(email, password)
+        .then((result) => {
+          this.SetUserData(result.user);
+        })
+        .catch((error) => {
+          this.SetUserData({});
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: error.message,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
-      });
+    }
+    return null;
   }
   /**
    * We're creating a new document in the users collection, and we're setting the user's data to the
