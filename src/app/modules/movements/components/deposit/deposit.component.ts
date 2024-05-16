@@ -25,7 +25,7 @@ export class DepositComponent {
     this.frmDeposit = this.frmBuilder.group({
       accountId: new FormControl('', [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(2),
       ]),
       amount: new FormControl('', [
         Validators.required,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CustomersService } from 'src/app/modules/security/services/customer/customers.service';
 import Swal from 'sweetalert2';
 import { AccountInterface } from '../../interfaces/account.interface';

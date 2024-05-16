@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { TransferService } from '../../services/transfer/transfer.service';
-import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { TransferService } from '../../services/transfer/transfer.service';
 
 @Component({
   selector: 'app-transfer',
@@ -26,7 +26,7 @@ export class TransferComponent {
     this.frmTransfer = new FormGroup({
       inComeId: new FormControl('', [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(2),
       ]),
       outComeId: new FormControl(this.outComeId),
       amount: new FormControl('', [

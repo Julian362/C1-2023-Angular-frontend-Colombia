@@ -11,7 +11,8 @@ export const environment = {
     authDomain: 'jg-bank.firebaseapp.com',
     messagingSenderId: '169907248139',
   },
-  production: false
+  production: false,
+  host: '',
 };
 
 /*
